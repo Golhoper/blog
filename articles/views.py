@@ -7,14 +7,13 @@ def create_art(request):
     if request.method == "POST":
         content = request.POST["content"]
         title = request.POST["title"]
-        name = request.user.name
-        user = User.objects.get(username=name)
+        if len(content) > 0 and len(title) > 0:
+            name = request.user.name
+            user = User.objects.get(username=name)
+            Articles.objects.create(content=content, title=title, user_id=user)
+            return render(request, 'main')
 
-        Articles.objects.create(content=content, title=title, user_id=user)
-
-        return render(request, 'main')
-    else:
-        return render(request, 'main')
+    return render(request, 'main')
 
 
 def delete_art(request, id):
@@ -24,7 +23,15 @@ def delete_art(request, id):
 
 
 def main_us(request, page=1):
-    all = Articles.objects.all()
+    if request.method == "POST":
+        content = request.POST["content"]
+        title = request.POST["title"]
+        if len(content) > 0 and len(title) > 0:
+            name = request.user
+            user = User.objects.get(username=name)
+            Articles.objects.create(content=content, title=title, user=user)
+
+    all = Articles.objects.all().values_list()
     paginator = Paginator(all, 5)
     context = {'articles': paginator.page(page)}
 

@@ -17,12 +17,7 @@ def login_us(request):
                 if user.is_active == 1 and str(group) == 'users':
                     login(request, user)
                     return redirect('main')
-            else:
-                return render(request, url_names.Names.login)
-        else:
-            return render(request, url_names.Names.login)
-    else:
-        return render(request, url_names.Names.login)
+    return render(request, url_names.Names.login)
 
 
 def registration(request):
