@@ -1,0 +1,9 @@
+{% extends 'user/index.html' %}
+
+{% block content %}
+    {% if user.is_authenticated == True %}
+        +
+    {% else %}
+        -
+    {% endif %}
+{% endblock %}

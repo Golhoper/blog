@@ -1,0 +1,17 @@
+{% extends 'user/index.html' %}
+
+{% block content %}
+    <body>
+        <form class="form-signin" method="post">
+          {% csrf_token %}
+          <h1 class="h3 mb-3 font-weight-normal" style="text-align: center;">Please Sign IN</h1>
+          <input id="inputEmail" class="form-control" placeholder="Username" name="username">
+          <input id="inputPassword" class="form-control" placeholder="Password" name="password">
+          <a href="{% url 'registration' %}" class="float-left">Registration</a>
+          <a href="{% url 'reset' %}" class="float-right">Password reset</a>
+
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+          <p class="mt-5 mb-3 text-muted">© 2033-2034</p>
+        </form>
+    </body>
+{% endblock %}

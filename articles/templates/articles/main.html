@@ -1,0 +1,9 @@
+{% extends 'articles/index.html' %}
+
+{% block content %}
+    {% if articles %}
+        {% for e in articles %}
+            e.1
+        {% endfor %}
+    {% endif %}
+{% endblock %}
