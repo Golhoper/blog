@@ -1,6 +1,7 @@
 from Libraries import *
 from django.db import models
 
+
 class Articles(models.Model):
 
     class Meta:
@@ -14,4 +15,4 @@ class Articles(models.Model):
     title = models.TextField(blank=False, null=False, default="Default title")
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now=True, help_text="creation time")
-    img = models.ImageField(upload_to="media/articles/")
+    img = models.ImageField(upload_to="articles/")

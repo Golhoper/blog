@@ -1,25 +1,39 @@
 {% extends 'articles/index.html' %}
+{% load staticfiles %}
 
 {% block content %}
+
     {% if user.is_authenticated %}
-        <form class="form-signin" method="post">
+        <form class="form-signin" method="post" enctype = "multipart/form-data">
             {% csrf_token %}
 
             <input class="form-control" placeholder="Title" name="title">
             <input class="form-control" placeholder="Content" name="content">
+            <input class="btn btn-lg btn-block" type = "file" placeholder = "Picture" name = "picture" />
 
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Создать сообщение</button>
         </form>
     {% endif %}
-    {% if articles %}
-        {% for e in articles %}
 
-            {{ e.0 }}
-            {{ e.1 }}
-            {{ e.2 }}
-            {{ e.3 }}
-            {{ e.4 }}
+
+
+    {% if articles %}
+        <ul class="list-group list-group-flush" >
+        {% for e in articles %}
+            <li class="list-group-item">
+                <a href="{% url 'delete' e.0 %}">Удалить статью</a>
+                <a href="{% url 'change' e.0 %}">Изменить статью</a>
+                <br>
+                {{ e.0 }}
+                {{ e.1 }}
+                {{ e.2 }}
+                {{ e.3 }}
+                {{ e.4 }}
+                <br>
+                <img src="media/{{ e.5 }}" alt="">
+            </li>
         {% endfor %}
+        </ul>
     {% endif %}
 
     {# Pagination start #}

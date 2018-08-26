@@ -1,0 +1,12 @@
+{% extends 'articles/index.html' %}
+
+{% block content %}
+    <form class="form-signin" method="post" enctype = "multipart/form-data">
+        {% csrf_token %}
+        <input class="form-control" placeholder="id" name="id" value={{ id }} readonly>
+        <input class="form-control" placeholder="Title" name="title" value={{ title }}>
+        <input class="form-control" placeholder="Content" name="content" value={{ content }}>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Изменить сообщение</button>
+    </form>
+{% endblock %}
